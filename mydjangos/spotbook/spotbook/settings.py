@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'spots',
     'frontend',
+    'frontendVue',
     'accounts',
     'clips',
     'profiles',

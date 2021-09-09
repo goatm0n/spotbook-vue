@@ -11,6 +11,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('clips/', include('clips.urls')),
     path('profiles/', include('profiles.urls')),
+    path('spotbook-vue/', include('frontendVue.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
