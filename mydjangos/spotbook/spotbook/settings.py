@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'spotbook.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'spotbook2.0',
+        'NAME': 'spotbook-vue',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
