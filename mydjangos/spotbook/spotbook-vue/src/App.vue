@@ -1,18 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <navbar></navbar>
+    <spot-clip
+     :clip="clip"
+    ></spot-clip>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar.vue'
+import SpotClip from './components/SpotClip.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    Navbar,
+    SpotClip,
+  },
+  data: function () {
+    return {
+      clip: {
+        user: 1,
+        spot: 1,
+        textContent: 'test clip',
+        image: '/media/images/image001_1_RpnbM80.png',
+        id: 1,
+        likes: [],
+      }
+    }
+  },
 }
 </script>
 
