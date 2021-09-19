@@ -48,7 +48,9 @@ def clip_list_spot_view(request, spot_id):
 def clip_detail_view(request, pk):
     clip = Clip.objects.get(id=pk)
     serializer = ClipSerializer(clip)
-    return Response(serializer.data)
+    data = serializer.data
+    data['username'] = clip.user.username
+    return Response(data)
 
 @api_view(['GET'])
 def clip_spot_view(request, pk):

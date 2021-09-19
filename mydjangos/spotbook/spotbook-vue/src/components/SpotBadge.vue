@@ -6,6 +6,7 @@
 
 <script>
 export default {
+    name: 'SpotBadge',
     props: ['title', 'spotId'],
     data: function () {
         return {

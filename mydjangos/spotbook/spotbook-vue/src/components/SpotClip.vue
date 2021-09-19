@@ -4,11 +4,17 @@
         <spot-badge
          v-if="spot"
          :title="spot.properties.title"
-         :spotId="spot.id"></spot-badge>
+         :spotId="spot.id">
+        </spot-badge>
+        <profile-badge
+         v-if="spot"
+         :userId="spot.properties.user">
+        </profile-badge>
     </div>
 </template>
 
 <script>
+import ProfileBadge from './ProfileBadge.vue';
     import SpotBadge from './SpotBadge.vue';
 
     export default {
@@ -16,6 +22,7 @@
         props: ['clip'],
         components: {
             SpotBadge,
+                ProfileBadge,
         },
         data: function () {
             return {
