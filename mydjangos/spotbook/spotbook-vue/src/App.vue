@@ -2,7 +2,7 @@
   <div id="app">
     <navbar></navbar>
     <spot-clip
-     :clip="clip"
+     :clipId="clipId"
     ></spot-clip>
   </div>
 </template>
@@ -19,14 +19,7 @@ export default {
   },
   data: function () {
     return {
-      clip: {
-        user: 1,
-        spot: 1,
-        textContent: 'test clip',
-        image: '/media/images/image001_1_RpnbM80.png',
-        id: 1,
-        likes: [],
-      }
+      clipId: 1
     }
   },
 }

@@ -1,23 +1,18 @@
 <template>
 <div>
-    <a>{{userId}}</a>
+    <a :href="url">{{username}}</a>
 </div>
 </template>
 
 <script>
 export default {
     name: 'ProfileBadge',
-    props: ['userId', 'username'],
+    props: ['username'],
     data: function () {
         return {
-            url: null,
+            url: `http://127.0.0.1:8000/spotbook/profile/${this.username}/`,
         }
     },
-    mounted () {
-        let str = `http://127.0.0.1:8000/spotbook/profile/${this.username}/`;
-        this.url = str;
-    }
-
 }
 </script>
 

@@ -106,9 +106,9 @@ def does_user_like(request, spot_id, *args, **kwargs):
     spot = qs.first()
 
     if user in spot.likes.all():
-        return Response({"data": True}, status=200)
+        return Response({True}, status=200)
     elif user not in spot.likes.all():
-        return Response({"data": False}, status=200)
+        return Response({False}, status=200)
     else:
         return Response({}, status=404)
 
@@ -171,6 +171,15 @@ def does_user_follow(request, spot_id):
         return Response({"data": True}, status=200)
     else:
         return Response({}, status=404)
+
+@api_view(['GET'])
+def spot_title(request, spot_id):
+    spot_qs = Spot.objects.filter(id=spot_id)
+    if not spot_qs.exists():
+        return Response({}, status=404)
+    spot = spot_qs.first()
+    title = spot.title 
+    return Response(title, status=200)
 
 
 

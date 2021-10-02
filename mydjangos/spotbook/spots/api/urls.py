@@ -13,6 +13,7 @@ urlpatterns = [
     path('follow/<str:spot_id>/', views.spot_follow_view, name='follow-spot-api'),
     path('followers/<str:spot_id>/', views.spot_followers, name='spot-followers-api'),
     path('does-user-follow/<str:spot_id>/', views.does_user_follow, name='does-user-follow-spot-api'),
+    path('spot-title/<str:spot_id>/', views.spot_title, name='api-spot-title'),
 
 
 ]

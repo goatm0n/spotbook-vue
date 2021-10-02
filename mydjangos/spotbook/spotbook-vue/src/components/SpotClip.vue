@@ -1,39 +1,76 @@
 <template>
     <div>
-        {{ spot }}
+        {{ clip }}
         <spot-badge
-         v-if="spot"
-         :title="spot.properties.title"
-         :spotId="spot.id">
+         :spotId="clip.spot">
         </spot-badge>
         <profile-badge
-         v-if="spot"
-         :userId="spot.properties.user">
+         :username="clip.username">
         </profile-badge>
+        <clip-text-content
+         :textContent="clip.textContent">
+        </clip-text-content>
+        <clip-image
+         :image="clip.image">
+        </clip-image>
+        <clip-like
+         :clipId="clip.id"
+         @like-event="handleLikeEvent"
+         @unlike-event="handleUnlikeEvent">
+        </clip-like>
+        <clip-like-counter
+         :likesCount="likesCount">
+        </clip-like-counter>
     </div>
 </template>
 
 <script>
-import ProfileBadge from './ProfileBadge.vue';
+    import ProfileBadge from './ProfileBadge.vue';
     import SpotBadge from './SpotBadge.vue';
+    import ClipTextContent from './ClipTextContent.vue';
+    import ClipImage from './ClipImage.vue';
+    import ClipLike from './ClipLike.vue';
+    import ClipLikeCounter from'./ClipLikeCounter.vue';
 
     export default {
         name: 'SpotClip',
-        props: ['clip'],
+        props: ['clipId'],
         components: {
             SpotBadge,
-                ProfileBadge,
+            ProfileBadge,
+            ClipTextContent,
+            ClipImage,
+            ClipLike,
+            ClipLikeCounter,
         },
         data: function () {
             return {
-                spot: null,
+                clip: null,
             }
         },
-        mounted () {
-            const axios = require('axios').default;
-            axios
-            .get(`http://127.0.0.1:8000/spots/api/spot-detail/${this.clip.spot}/`)
-            .then(response => (this.spot = response.data))
+        methods: {
+            getClip: function () {
+                console.log('grtting');
+                const axios = require('axios').default;
+                axios
+                .get(`http://127.0.0.1:8000/clips/api/clip-detail/${this.clipId}/`)
+                .then(response => (this.clip = response.data))
+            },
+            handleLikeEvent: function () {
+                this.getClip();
+            },
+            handleUnlikeEvent: function () {
+                this.getClip();
+            },
         },
+        computed: {
+            likesCount: function () {
+                return this.clip.likesCount
+            }
+        },
+        created () {
+            this.getClip();
+        },
+        
     }
 </script>

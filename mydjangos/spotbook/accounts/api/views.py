@@ -38,3 +38,9 @@ def account_create_view(request):
         Account.objects.create_user(email=request.data['email'], username=request.data['username'], password=request.data['password'])
         return Response(serializer.data, status=201)
     return Response({}, status=400)
+
+@api_view(['GET'])
+def getUsername(request, pk):
+    account = Account.objects.get(id=pk)
+    serializer = AccountSerializer(account, many=False)
+    return Response(serializer.data['username'])
