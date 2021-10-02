@@ -48,7 +48,10 @@ def clip_list_spot_view(request, spot_id):
 def clip_detail_view(request, pk):
     clip = Clip.objects.get(id=pk)
     serializer = ClipSerializer(clip)
-    return Response(serializer.data)
+    data = serializer.data
+    data['username'] = clip.user.username
+    data['likesCount'] = clip.likes.all().count()
+    return Response(data)
 
 @api_view(['GET'])
 def clip_spot_view(request, pk):
@@ -124,9 +127,9 @@ def does_user_like(request, clip_id, *args, **kwargs):
     clip = qs.first()
 
     if user in clip.likes.all():
-        return Response({"data": True}, status=200)
+        return Response(True, status=200)
     elif user not in clip.likes.all():
-        return Response({"data": False}, status=200)
+        return Response(False, status=200)
     else:
         return Response({}, status=404)
 
@@ -139,7 +142,7 @@ def clip_likes_count_view(request, clip_id):
     likes_qs = clip.likes.all()
     count = likes_qs.count()
 
-    return Response({'count': count}, status=200)
+    return Response(count, status=200)
 
 @api_view(['GET'])
 def spot_feed_view(request, username):

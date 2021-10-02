@@ -84,3 +84,5 @@
 
 7. Clip Upload
     - fix form component
+
+FIX BUGGY CLIP LIKE BUTTON

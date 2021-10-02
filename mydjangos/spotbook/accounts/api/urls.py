@@ -6,4 +6,5 @@ urlpatterns = [
     path('account-list/', views.accountList, name='api-account-list'),
     path('account-detail/<str:pk>/', views.accountDetail, name='api-account-detail'),
     path('account-create/', views.account_create_view, name='api-account-create'),
+    path('get-username/<str:pk>/', views.getUsername, name='api-get-username'),
 ]

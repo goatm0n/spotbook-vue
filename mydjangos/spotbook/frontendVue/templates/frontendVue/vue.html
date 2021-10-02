@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        
+        {% block django-content %}
+            
+        {% endblock django-content %}
+
+
+            
+        
+        {% block vue %}
+
+            <div id='app'></div>
+
+            {% load static %}
+            <script type="text/javascript" src="{% static 'src/vue/dist/js/chunk-vendors.js' %}"></script>
+            {% load static %}
+            <script type="text/javascript" src="{% static 'src/vue/dist/js/app.js' %}"></script>
+        
+        {% endblock vue %}
+            
+    </body>
+</html>
+    
