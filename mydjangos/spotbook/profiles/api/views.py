@@ -86,9 +86,9 @@ def does_user_follow(request, targetUsername, *args, **kwargs):
 
     qs = target_profile_followers_qs.filter(username=username)
     if not qs.exists():
-        return Response({'data': False}, status=200)
+        return Response(False, status=200)
     elif qs.exists():
-        return Response({'data': True}, status=200)
+        return Response(True, status=200)
     else:
         return Response({}, status=404)
 
@@ -119,3 +119,20 @@ def user_following_spots_list(request, username):
         spot_list.append(spot.id)
 
     return Response({"spot_list": spot_list})
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def profile_follow_toggle_view(request, username):
+    qs = Profile.objects.filter(user__username=username)
+    
+    if not qs.exists():
+        return Response({}, status=404)
+
+    obj = qs.first()
+    
+    if request.user in obj.followers.all():
+        obj.followers.remove(request.user)
+    else:
+        obj.followers.add(request.user)
+
+    return Response({}, status=201)

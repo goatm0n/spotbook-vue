@@ -1,25 +1,24 @@
 <template>
   <div id="app">
     <navbar></navbar>
-    <spot-clip
-     :clipId="clipId"
-    ></spot-clip>
+    <profile
+     :username="username"></profile>
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
-import SpotClip from './components/SpotClip.vue'
+import Profile from './components/Profile.vue'
 
 export default {
   name: 'App',
   components: {
     Navbar,
-    SpotClip,
+    Profile,
   },
   data: function () {
     return {
-      clipId: 1
+      username: 'admin'
     }
   },
 }
