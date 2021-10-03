@@ -14,11 +14,13 @@
         </clip-image>
         <clip-like
          :clipId="clip.id"
-         @like-event="handleLikeEvent"
-         @unlike-event="handleUnlikeEvent">
+         v-on:like-event="handleLikeEvent"
+         v-on:unlike-event="handleLikeEvent"
+         :key="clipLikeKey">
         </clip-like>
         <clip-like-counter
-         :likesCount="likesCount">
+         :clipId="clipId"
+         :key="clipCountKey">
         </clip-like-counter>
     </div>
 </template>
@@ -45,6 +47,8 @@
         data: function () {
             return {
                 clip: null,
+                clipLikeKey: 0,
+                clipCountKey: 0,
             }
         },
         methods: {
@@ -55,12 +59,16 @@
                 .get(`http://127.0.0.1:8000/clips/api/clip-detail/${this.clipId}/`)
                 .then(response => (this.clip = response.data))
             },
+            forceLikeRerender: function () {
+                this.clipLikeKey += 1;
+            },
+            forceCountRerender: function () {
+                this.clipCountKey += 1;
+            },
             handleLikeEvent: function () {
-                this.getClip();
-            },
-            handleUnlikeEvent: function () {
-                this.getClip();
-            },
+                this.forceLikeRerender();
+                this.forceCountRerender();
+            }
         },
         computed: {
             likesCount: function () {
@@ -70,6 +78,9 @@
         created () {
             this.getClip();
         },
+        mounted () {
+            this.getClip();
+        }
         
     }
 </script>

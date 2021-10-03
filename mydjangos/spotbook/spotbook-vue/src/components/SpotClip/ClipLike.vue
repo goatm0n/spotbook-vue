@@ -39,14 +39,12 @@ export default {
             console.log("unlike method invoked");
             console.log(event.target.tagName);
             this.postForm();
-            this.like = false;
             this.$emit('unlike-event');
         },
         likeMethod: function (event) {
             console.log("like method invoked");
             console.log(event.target.tagName);
             this.postForm();
-            this.like = true;
             this.$emit('like-event');
         },
         postForm: function () {
@@ -84,12 +82,12 @@ export default {
             .then(response => (this.like = response.data))
         }
     },
-    mounted () {
-        const axios = require('axios').default;
-        axios
-        .get(`http://127.0.0.1:8000/clips/api/does-user-like/${this.clipId}/`)
-        .then(response => (this.like = response.data))
+    created () {
+        this.doesUserLike()
     },
+    mounted ()  {
+        this.doesUserLike()
+    }
 }
 </script>
 
