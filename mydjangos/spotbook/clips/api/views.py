@@ -180,3 +180,4 @@ def spot_feed_view(request, username):
     
     return Response({"clip_list": clip_list })
 
+

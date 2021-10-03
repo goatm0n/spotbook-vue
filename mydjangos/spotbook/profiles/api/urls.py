@@ -9,5 +9,6 @@ urlpatterns = [
     path('does-user-follow/<str:targetUsername>/', views.does_user_follow, name='api-does-user-follow'),
     path('user-following-profiles/<str:username>/', views.user_following_profiles_list, name='api-following-profiles-list'),
     path('user-following-spots/<str:username>/', views.user_following_spots_list, name='api-user-following-spots-list'),
+    path('follow-toggle/<str:username>/', views.profile_follow_toggle_view, name='api-profile-follow-toggle'),
     
 ]
