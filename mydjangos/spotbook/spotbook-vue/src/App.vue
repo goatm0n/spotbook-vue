@@ -1,36 +1,105 @@
 <template>
-  <div id="app">
-    <navbar></navbar>
-    <profile
-     :username="username"></profile>
-  </div>
+<div id="app">
+    <div class="left-container">
+        <theme-button></theme-button>
+    </div>
+    <div class="center-container">
+        <div class="center-container-header">
+            <user-badge
+             :username="username"
+             v-on:toggle-profile="toggleProfile"></user-badge>
+        </div>
+        <profile
+         :username="username"
+         v-if="profileToggle"></profile>
+    </div>
+    <div class="right-container"></div>
+    
+</div>
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
+import ThemeButton from './components/ThemeButton.vue'
+import UserBadge from './components/UserBadge.vue'
 import Profile from './components/Profile.vue'
 
 export default {
-  name: 'App',
-  components: {
-    Navbar,
-    Profile,
-  },
-  data: function () {
-    return {
-      username: 'admin'
+    name: 'App',
+    components: {
+        ThemeButton,
+        UserBadge,
+        Profile,
+    },
+    data: function () {
+        return {
+            username: "admin",
+            profileToggle: false,
+        }
+    },
+    methods: {
+        toggleProfile: function () {
+            this.profileToggle = true;
+        }
     }
-  },
+
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+:root {
+    --background-color-primary: #1e1e1e;
+    --background-color-secondary: #3d3d3d;
+    --accent-color: #2d2d30;
+    --text-primary-color: #ddd;
+    --element-size: 4rem;
 }
+
+:root.light-theme {
+    --background-color-primary: #ebebeb;
+    --background-color-secondary: #fafafa;
+    --accent-color: #cacaca;
+    --text-primary-color: #222;
+}
+
+p {
+    color: var(--text-primary-color);
+}
+
+#app {
+    background-color: var(--background-color-primary);
+    width: 100vw;
+    height: 100vh;
+}
+
+.left-container {
+    width: 15%;
+    height: 100%;
+    float: left;
+    border: calc(var(--element-size) * 0.025) solid var(--accent-color);
+    background-color: var(--background-color-primary);
+}
+
+.center-container {
+    width: 68.5%;
+    height: 100%;
+    float: left;
+    border: calc(var(--element-size) * 0.025) solid var(--accent-color);
+    background-color: var(--background-color-primary);
+}
+
+.right-container {
+    width: 15%;
+    height: 100%;
+    float: right;
+    border: calc(var(--element-size) * 0.025) solid var(--accent-color);
+    background-color: var(--background-color-primary);
+}
+
+.center-container-header {
+    width: 100%;
+    height: 5.5%;
+    border: calc(var(--element-size) * 0.025) solid var(--accent-color);
+}
+
 </style>
