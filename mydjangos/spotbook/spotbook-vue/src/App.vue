@@ -9,9 +9,9 @@
              :username="username"
              v-on:toggle-profile="toggleProfile"></user-badge>
         </div>
-        <profile
-         :username="username"
-         v-if="profileToggle"></profile>
+        <div class="center-container-main">
+            <profile :username="username" v-if="profileToggle"></profile>
+        </div>
     </div>
     <div class="right-container"></div>
     
@@ -40,7 +40,8 @@ export default {
         toggleProfile: function () {
             this.profileToggle = true;
         }
-    }
+    },
+
 
 }
 </script>
@@ -100,6 +101,14 @@ p {
     width: 100%;
     height: 5.5%;
     border: calc(var(--element-size) * 0.025) solid var(--accent-color);
+}
+
+.center-container-main {
+    width: 100%;
+    height: 94.5%;
+    border: calc(var(--element-size) * 0.025) solid var(--accent-color);
+    overflow: auto;
+    
 }
 
 </style>
