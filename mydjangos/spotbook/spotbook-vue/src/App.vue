@@ -1,4 +1,8 @@
 <template>
+<!-- 
+    app structure:
+    he
+ -->
 <div id="app">
     <div class="left-container">
         <theme-button></theme-button>
