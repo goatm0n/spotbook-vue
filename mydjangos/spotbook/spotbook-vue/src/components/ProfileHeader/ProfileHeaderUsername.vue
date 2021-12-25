@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="profile-header-username">
     {{username}}
 </div>
 </template>
