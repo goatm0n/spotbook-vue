@@ -4,20 +4,7 @@
     he
  -->
 <div id="app">
-    <div class="left-container">
-        <theme-button></theme-button>
-    </div>
-    <div class="center-container">
-        <div class="center-container-header">
-            <user-badge
-             :username="username"
-             v-on:toggle-profile="toggleProfile"></user-badge>
-        </div>
-        <div class="center-container-main">
-            <profile :username="username" v-if="profileToggle"></profile>
-        </div>
-    </div>
-    <div class="right-container"></div>
+    
     
 </div>
 </template>
